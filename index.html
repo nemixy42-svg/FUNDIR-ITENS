@@ -43,7 +43,8 @@
 
         .main-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            /* Ajusta automaticamente entre 1 e 4 colunas dependendo do espaço */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
@@ -669,6 +670,77 @@
                 </div>
             </div>
 
+            <!-- Item 3 (Opcional) -->
+            <div class="item-card">
+                <h2>✨ Item 3 (Opcional)</h2>
+                <div class="input-group">
+                    <label>Nome do Item</label>
+                    <input type="text" id="item3-name" placeholder="Ex: Elmo de Prata">
+                </div>
+                <div class="input-group">
+                    <label>Tipo</label>
+                    <select id="item3-type">
+                        <option value="capacete">Capacete</option>
+                        <option value="espada">Espada</option>
+                        <option value="anel">Anel</option>
+                        <option value="botas">Botas</option>
+                        <option value="escudo">Escudo</option>
+                        <option value="amuleto">Amuleto</option>
+                        <option value="colar">Colar</option>
+                    </select>
+                </div>
+                <div class="input-group material-search">
+                    <label>Material (digite para buscar)</label>
+                    <input type="text" id="item3-material" placeholder="Digite o material..." autocomplete="off">
+                    <div class="material-suggestions" id="item3-suggestions"></div>
+                </div>
+                <div class="input-group">
+                    <label>Atributos</label>
+                    <div id="item3-attributes"></div>
+                    <button class="btn-add-attr" onclick="addAttribute('item3')">+ Adicionar Atributo</button>
+                </div>
+                <div class="input-group">
+                    <label>Efeitos Especiais (opcional)</label>
+                    <div id="item3-effects"></div>
+                    <button class="btn-add-attr" onclick="addEffect('item3')">+ Adicionar Efeito</button>
+                </div>
+            </div>
+
+            <!-- Item 4 (Opcional) -->
+            <div class="item-card">
+                <h2>🌑 Item 4 (Opcional)</h2>
+                <div class="input-group">
+                    <label>Nome do Item</label>
+                    <input type="text" id="item4-name" placeholder="Ex: Capa de Sombras">
+                </div>
+                <div class="input-group">
+                    <label>Tipo</label>
+                    <select id="item4-type">
+                        <option value="capa">Capa</option>
+                        <option value="espada">Espada</option>
+                        <option value="anel">Anel</option>
+                        <option value="colar">Colar</option>
+                        <option value="luvas">Luvas</option>
+                        <option value="botas">Botas</option>
+                    </select>
+                </div>
+                <div class="input-group material-search">
+                    <label>Material (digite para buscar)</label>
+                    <input type="text" id="item4-material" placeholder="Digite o material..." autocomplete="off">
+                    <div class="material-suggestions" id="item4-suggestions"></div>
+                </div>
+                <div class="input-group">
+                    <label>Atributos</label>
+                    <div id="item4-attributes"></div>
+                    <button class="btn-add-attr" onclick="addAttribute('item4')">+ Adicionar Atributo</button>
+                </div>
+                <div class="input-group">
+                    <label>Efeitos Especiais (opcional)</label>
+                    <div id="item4-effects"></div>
+                    <button class="btn-add-attr" onclick="addEffect('item4')">+ Adicionar Efeito</button>
+                </div>
+            </div>
+
             <button class="fusion-button" onclick="fuseItems()">
                 ⚡ FUNDIR ITENS ⚡
             </button>
@@ -1272,123 +1344,129 @@
             return { name, type, material, attributes, customEffects };
         }
 
-        function fuseItems() {
-            const item1 = getItemData('item1');
-            const item2 = getItemData('item2');
+function fuseItems() {
+    // 1. Coleta os dados dos 4 itens e filtra apenas os que foram preenchidos
+    const ids = ['item1', 'item2', 'item3', 'item4'];
+    const itemsToFuse = ids
+        .map(id => getItemData(id))
+        .filter(item => item.name.trim() !== "" && item.material.trim() !== "");
 
-            if (!item1.name || !item2.name || !item1.material || !item2.material) {
-                alert('⚠️ Preencha todos os campos obrigatórios!');
-                return;
-            }
+    // 2. Validação de segurança: Mínimo 2 itens
+    if (itemsToFuse.length < 2) {
+        alert('⚠️ Para fundir, preencha pelo menos 2 itens (Nome e Material)!');
+        return;
+    }
 
-            // Animação de fusão
-            const resultDiv = document.getElementById('result');
-            const contentDiv = document.getElementById('result-content');
-            
-            resultDiv.classList.add('show');
-            contentDiv.innerHTML = '<div class="fusion-animation">⚡ 🔮 ✨ 🌟</div>';
+    // 3. Inicia a interface de resultado e a animação
+    const resultDiv = document.getElementById('result');
+    const contentDiv = document.getElementById('result-content');
+    resultDiv.classList.add('show');
+    contentDiv.innerHTML = `<div class="fusion-animation">⚡ Fundindo ${itemsToFuse.length} Itens... 🔮</div>`;
 
-            setTimeout(() => {
-                const result = fusionAI.fuse(item1, item2);
+    // 4. Processamento da Fusão após 1.5 segundos
+    setTimeout(() => {
+        let fusedAttributes = {};
+        let materials = itemsToFuse.map(i => i.material);
+        let allEffects = [];
+        
+        // Percorre todos os itens ativos para somar status e coletar efeitos
+        itemsToFuse.forEach(item => {
+            // Soma atributos
+            item.attributes.forEach(attr => {
+                fusedAttributes[attr.name] = (fusedAttributes[attr.name] || 0) + attr.value;
+            });
+            // Coleta efeitos especiais
+            item.customEffects.forEach(eff => {
+                allEffects.push(`✨ ${eff.name} (Nível ${eff.level})`);
+            });
+        });
 
-                if (!result.success) {
-                    contentDiv.innerHTML = `
-                        <div style="text-align: center; padding: 40px;">
-                            <h2 style="color: #e74c3c;">${result.message}</h2>
-                        </div>
-                    `;
-                    return;
-                }
+        const totalBaseStats = Object.values(fusedAttributes).reduce((a, b) => a + b, 0);
+        
+        // 5. Cálculo de Bônus por Quantidade
+        let multiplier = 1;
+        if (itemsToFuse.length === 3) multiplier = 1.2; // +20%
+        if (itemsToFuse.length === 4) multiplier = 1.5; // +50%
 
-                const item = result.item;
+        const finalPower = Math.floor(totalBaseStats * multiplier);
+        const rarity = fusionAI.calculateRarity(finalPower);
+        
+        // 6. Gerar nome épico baseado no primeiro item e quantidade
+        const prefixos = ["", "", "Trindade de", "Tetra-Artefato de"];
+        const nomeFinal = (itemsToFuse.length > 2 ? prefixos[itemsToFuse.length - 1] + " " : "Fusão de ") + itemsToFuse[0].name;
+
+        // Registra o nome na lista de nomes criados
+        fusionAI.nomesGerados.add(nomeFinal);
+
+        // 7. Renderiza o HTML final do resultado
+        contentDiv.innerHTML = `
+            <div class="result-item">
+                <h3>💎 ${nomeFinal}</h3>
+                <div style="text-align: center;"><span class="rarity ${rarity}">${rarity.toUpperCase()}</span></div>
+                <div style="text-align: center; margin: 15px 0;"><strong>Composição:</strong> ${materials.join(' + ')}</div>
                 
-                let effectsHTML = '';
-                if (item.effects.length > 0) {
-                    effectsHTML = `
-                        <div class="effects-list">
-                            <strong>🌟 Efeitos Especiais:</strong>
-                            ${item.effects.map(e => `<div>${e}</div>`).join('')}
+                <div class="result-stats">
+                    ${Object.entries(fusedAttributes).map(([name, value]) => `
+                        <div class="stat-box">
+                            <strong>${name}</strong>
+                            <div>+${Math.floor(value * multiplier)}</div>
                         </div>
-                    `;
-                }
+                    `).join('')}
+                </div>
 
-                contentDiv.innerHTML = `
-                    <div class="result-item">
-                        <h3>✨ ${item.name}</h3>
-                        <div style="text-align: center;">
-                            <span class="rarity ${item.rarity}">${item.rarity.toUpperCase()}</span>
-                        </div>
-                        
-                        <div style="text-align: center; margin: 15px 0; font-size: 1.1em;">
-                            <strong>Materiais:</strong> ${item.materials.join(' + ')}
-                        </div>
-                        
-                        <div class="result-stats">
-                            ${item.attributes.map(attr => `
-                                <div class="stat-box">
-                                    <strong>${attr.name}</strong>
-                                    <div>+${attr.value}</div>
-                                </div>
-                            `).join('')}
-                        </div>
-                        
-                        ${effectsHTML}
-                        
-                        <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(255,255,255,0.3);">
-                            <strong>💪 Poder Total: ${item.totalStats}</strong>
-                        </div>
-                        
-                        <div style="text-align: center; margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; font-size: 0.9em;">
-                            ℹ️ Este nome é único! Novas fusões gerarão nomes diferentes automaticamente.
-                        </div>
+                ${allEffects.length > 0 ? `
+                    <div class="effects-list">
+                        <strong>🌟 Efeitos da Fusão:</strong>
+                        ${[...new Set(allEffects)].map(e => `<div>${e}</div>`).join('')}
                     </div>
-                    
-                    <div style="text-align: center;">
-                        <button onclick="location.reload()" style="padding: 15px 30px; background: #667eea; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-right: 10px;">
-                            🔄 Nova Fusão
-                        </button>
-                        <button onclick="mostrarNomesUsados()" style="padding: 15px 30px; background: #9b59b6; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
-                            📋 Ver Nomes Criados (${fusionAI.nomesGerados.size})
-                        </button>
-                    </div>
-                `;
-            }, 1500);
-        }
-
-        function mostrarNomesUsados() {
-            const nomes = Array.from(fusionAI.nomesGerados);
-            if (nomes.length === 0) {
-                alert('Nenhum item foi criado ainda!');
-                return;
-            }
+                ` : ''}
+                
+                <div style="text-align: center; margin-top: 20px; border-top: 2px solid rgba(255,255,255,0.3); padding-top: 15px;">
+                    <strong>💪 Poder Total Final: ${finalPower}</strong>
+                </div>
+            </div>
             
-            const lista = nomes.map((nome, i) => `${i + 1}. ${nome}`).join('\n');
-            alert(`📋 NOMES JÁ CRIADOS (${nomes.length}):\n\n${lista}`);
-        }
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="location.reload()" style="padding: 15px 30px; background: #667eea; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-right: 10px;">
+                    🔄 Nova Fusão
+                </button>
+                <button onclick="mostrarNomesUsados()" style="padding: 15px 30px; background: #9b59b6; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
+                    📋 Ver Nomes Criados (${fusionAI.nomesGerados.size})
+                </button>
+            </div>
+        `;
+    }, 1500);
+}
 
-        // Inicialização
-        setupMaterialSearch('item1');
-        setupMaterialSearch('item2');
+// Mostra a lista de itens já fundidos nesta sessão
+function mostrarNomesUsados() {
+    const nomes = Array.from(fusionAI.nomesGerados);
+    if (nomes.length === 0) {
+        alert('Nenhum item foi criado ainda!');
+        return;
+    }
+    const lista = nomes.map((nome, i) => `${i + 1}. ${nome}`).join('\n');
+    alert(`📋 NOMES JÁ CRIADOS:\n\n${lista}`);
+}
 
-        // Dados de exemplo
-        document.getElementById('item1-name').value = 'Espada Flamejante';
-        document.getElementById('item1-type').value = 'espada';
-        document.getElementById('item1-material').value = 'ferro';
-        document.getElementById('item1-attributes').querySelector('.attr-name').value = 'Dano';
-        document.getElementById('item1-attributes').querySelector('.attr-value').value = '15';
-        document.getElementById('item1-effects').querySelector('.effect-name').value = 'Queima inimigos';
-        document.getElementById('item1-effects').querySelector('.effect-level').value = '3';
+// Inicialização (Ativa a busca de materiais nos 4 itens)
+setupMaterialSearch('item1');
+setupMaterialSearch('item2');
+setupMaterialSearch('item3'); 
+setupMaterialSearch('item4'); 
 
-        document.getElementById('item2-name').value = 'Espada Infernal';
-        document.getElementById('item2-type').value = 'espada';
-        document.getElementById('item2-material').value = 'fogo';
-        document.getElementById('item2-attributes').querySelector('.attr-name').value = 'Dano';
-        document.getElementById('item2-attributes').querySelector('.attr-value').value = '20';
-        document.getElementById('item2-effects').querySelector('.effect-name').value = 'Queima inimigos';
-        document.getElementById('item2-effects').querySelector('.effect-level').value = '2';
-    </script>
-</body>
-</html>
-    </script>
+// Dados de exemplo iniciais para facilitar o teste
+document.getElementById('item1-name').value = 'Espada Flamejante';
+document.getElementById('item1-type').value = 'espada';
+document.getElementById('item1-material').value = 'ferro';
+
+document.getElementById('item2-name').value = 'Espada Infernal';
+document.getElementById('item2-type').value = 'espada';
+document.getElementById('item2-material').value = 'fogo';
+
+// Garante que os cards 3 e 4 já tenham um campo de atributo para preencher
+addAttribute('item3');
+addAttribute('item4');
+</script>
 </body>
 </html>
