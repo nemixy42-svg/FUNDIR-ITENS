@@ -43,9 +43,8 @@
 
         .main-content {
             display: grid;
-            /* Ajusta automaticamente entre 1 e 4 colunas dependendo do espaço */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin-bottom: 30px;
         }
 
@@ -303,7 +302,8 @@
             <p>Combine itens de QUALQUER material - Metais, Elementos, Cristais e mais!</p>
         </div>
 
-        <div class="main-content">
+<div class="main-content">
+            <!-- ================= ITEM 1 ================= -->
             <div class="item-card">
                 <h2>⚔️ Item 1</h2>
                 <div class="input-group">
@@ -336,162 +336,25 @@
                         <option value="colar">Colar</option>
                     </select>
                 </div>
-                <div class="input-group material-search">
-                    <label>Material (digite para buscar)</label>
-                    <input type="text" id="item1-material" placeholder="Ex: ferro, fogo, diamante..." autocomplete="off">
-                    <div class="material-suggestions" id="item1-suggestions"></div>
+                <div class="input-group">
+                    <label>Material</label>
+                    <select id="item1-material">
+                        <option value="">Selecione o material</option>
+                    </select>
                 </div>
                 <div class="input-group">
                     <label>Atributos</label>
-                    <div id="item1-attributes">
-                        <div class="attr-input">
-                            <select class="attr-name">
-                                <option value="">Selecione o atributo</option>
-                                <optgroup label="⚔️ COMBATE">
-                                    <option value="Dano">Dano</option>
-                                    <option value="Dano Físico">Dano Físico</option>
-                                    <option value="Dano Mágico">Dano Mágico</option>
-                                    <option value="Dano Crítico">Dano Crítico</option>
-                                    <option value="Taxa de Crítico">Taxa de Crítico</option>
-                                    <option value="Penetração de Armadura">Penetração de Armadura</option>
-                                    <option value="Precisão">Precisão</option>
-                                    <option value="Alcance">Alcance</option>
-                                </optgroup>
-                                <optgroup label="🛡️ DEFESA">
-                                    <option value="Defesa">Defesa</option>
-                                    <option value="Defesa Física">Defesa Física</option>
-                                    <option value="Defesa Mágica">Defesa Mágica</option>
-                                    <option value="Resistência">Resistência</option>
-                                    <option value="Bloqueio">Bloqueio</option>
-                                    <option value="Evasão">Evasão</option>
-                                    <option value="Redução de Dano">Redução de Dano</option>
-                                </optgroup>
-                                <optgroup label="❤️ VITALIDADE">
-                                    <option value="Vida">Vida</option>
-                                    <option value="HP Máximo">HP Máximo</option>
-                                    <option value="Regeneração de Vida">Regeneração de Vida</option>
-                                    <option value="Roubo de Vida">Roubo de Vida</option>
-                                </optgroup>
-                                <optgroup label="🔮 ENERGIA">
-                                    <option value="Mana">Mana</option>
-                                    <option value="Mana Máxima">Mana Máxima</option>
-                                    <option value="Regeneração de Mana">Regeneração de Mana</option>
-                                    <option value="Custo de Habilidade">Custo de Habilidade</option>
-                                </optgroup>
-                                <optgroup label="⚡ VELOCIDADE">
-                                    <option value="Velocidade de Ataque">Velocidade de Ataque</option>
-                                    <option value="Velocidade de Movimento">Velocidade de Movimento</option>
-                                    <option value="Tempo de Recarga">Tempo de Recarga</option>
-                                </optgroup>
-                                <optgroup label="✨ ESPECIAL">
-                                    <option value="Sorte">Sorte</option>
-                                    <option value="Drop de Ouro">Drop de Ouro</option>
-                                    <option value="Experiência">Experiência</option>
-                                    <option value="Durabilidade">Durabilidade</option>
-                                </optgroup>
-                            </select>
-                            <input type="number" placeholder="Valor" class="attr-value">
-                        </div>
-                    </div>
+                    <div id="item1-attributes"></div>
                     <button class="btn-add-attr" onclick="addAttribute('item1')">+ Adicionar Atributo</button>
                 </div>
                 <div class="input-group">
                     <label>Efeitos Especiais (opcional)</label>
-                    <div id="item1-effects">
-                        <div class="attr-input">
-                            <select class="effect-name" style="flex: 2;">
-                                <option value="">Selecione o efeito</option>
-                                <optgroup label="🔥 FOGO">
-                                    <option value="Queima inimigos">Queima inimigos</option>
-                                    <option value="Explosão flamejante">Explosão flamejante</option>
-                                    <option value="Aura de fogo">Aura de fogo</option>
-                                    <option value="Incendeia área">Incendeia área</option>
-                                </optgroup>
-                                <optgroup label="❄️ GELO">
-                                    <option value="Congela inimigos">Congela inimigos</option>
-                                    <option value="Desacelera alvos">Desacelera alvos</option>
-                                    <option value="Tempestade de gelo">Tempestade de gelo</option>
-                                    <option value="Aura gélida">Aura gélida</option>
-                                </optgroup>
-                                <optgroup label="⚡ RAIO">
-                                    <option value="Paralisa inimigos">Paralisa inimigos</option>
-                                    <option value="Corrente elétrica">Corrente elétrica</option>
-                                    <option value="Sobrecarga">Sobrecarga</option>
-                                    <option value="Tempestade">Tempestade</option>
-                                </optgroup>
-                                <optgroup label="☠️ VENENO">
-                                    <option value="Envenena alvos">Envenena alvos</option>
-                                    <option value="Nuvem tóxica">Nuvem tóxica</option>
-                                    <option value="Corrosão">Corrosão</option>
-                                    <option value="Doença">Doença</option>
-                                </optgroup>
-                                <optgroup label="💚 CURA">
-                                    <option value="Regenera vida">Regenera vida</option>
-                                    <option value="Cura ao atacar">Cura ao atacar</option>
-                                    <option value="Aura de cura">Aura de cura</option>
-                                    <option value="Restauração">Restauração</option>
-                                </optgroup>
-                                <optgroup label="🩸 VAMPÍRICO">
-                                    <option value="Drena vida">Drena vida</option>
-                                    <option value="Roubo vampírico">Roubo vampírico</option>
-                                    <option value="Absorção de alma">Absorção de alma</option>
-                                </optgroup>
-                                <optgroup label="✨ LUZ">
-                                    <option value="Dano sagrado">Dano sagrado</option>
-                                    <option value="Cega inimigos">Cega inimigos</option>
-                                    <option value="Aura divina">Aura divina</option>
-                                    <option value="Purificação">Purificação</option>
-                                </optgroup>
-                                <optgroup label="🌑 TREVAS">
-                                    <option value="Dano sombrio">Dano sombrio</option>
-                                    <option value="Amaldiçoa alvos">Amaldiçoa alvos</option>
-                                    <option value="Medo">Medo</option>
-                                    <option value="Corrupção">Corrupção</option>
-                                </optgroup>
-                                <optgroup label="💥 FÍSICO">
-                                    <option value="Atordoa inimigos">Atordoa inimigos</option>
-                                    <option value="Sangramento">Sangramento</option>
-                                    <option value="Perfuração">Perfuração</option>
-                                    <option value="Esmagamento">Esmagamento</option>
-                                </optgroup>
-                                <optgroup label="🛡️ PROTEÇÃO">
-                                    <option value="Escudo mágico">Escudo mágico</option>
-                                    <option value="Reflete dano">Reflete dano</option>
-                                    <option value="Imunidade">Imunidade</option>
-                                    <option value="Barreira">Barreira</option>
-                                </optgroup>
-                                <optgroup label="💨 MOVIMENTO">
-                                    <option value="Aumenta velocidade">Aumenta velocidade</option>
-                                    <option value="Teleporte">Teleporte</option>
-                                    <option value="Dash">Dash</option>
-                                    <option value="Levitação">Levitação</option>
-                                </optgroup>
-                                <optgroup label="🔮 MÁGICO">
-                                    <option value="Regenera mana">Regenera mana</option>
-                                    <option value="Amplifica magia">Amplifica magia</option>
-                                    <option value="Silencia inimigos">Silencia inimigos</option>
-                                    <option value="Explosão arcana">Explosão arcana</option>
-                                </optgroup>
-                                <optgroup label="🎯 UTILITÁRIO">
-                                    <option value="Aumenta drop">Aumenta drop</option>
-                                    <option value="Dobra XP">Dobra XP</option>
-                                    <option value="Invisibilidade">Invisibilidade</option>
-                                    <option value="Visão noturna">Visão noturna</option>
-                                </optgroup>
-                                <optgroup label="🌟 ESPECIAL">
-                                    <option value="Invocação">Invocação</option>
-                                    <option value="Transformação">Transformação</option>
-                                    <option value="Ressurreição">Ressurreição</option>
-                                    <option value="Controle mental">Controle mental</option>
-                                </optgroup>
-                            </select>
-                            <input type="number" placeholder="Nível" class="effect-level" min="1" max="10" value="1">
-                        </div>
-                    </div>
+                    <div id="item1-effects"></div>
                     <button class="btn-add-attr" onclick="addEffect('item1')">+ Adicionar Efeito</button>
                 </div>
             </div>
 
+            <!-- ================= ITEM 2 ================= -->
             <div class="item-card">
                 <h2>🗡️ Item 2</h2>
                 <div class="input-group">
@@ -524,163 +387,25 @@
                         <option value="colar">Colar</option>
                     </select>
                 </div>
-                <div class="input-group material-search">
-                    <label>Material (digite para buscar)</label>
-                    <input type="text" id="item2-material" placeholder="Ex: ouro, água, obsidiana..." autocomplete="off">
-                    <div class="material-suggestions" id="item2-suggestions"></div>
+                <div class="input-group">
+                    <label>Material</label>
+                    <select id="item2-material">
+                        <option value="">Selecione o material</option>
+                    </select>
                 </div>
                 <div class="input-group">
                     <label>Atributos</label>
-                    <div id="item2-attributes">
-                        <div class="attr-input">
-                            <select class="attr-name">
-                                <option value="">Selecione o atributo</option>
-                                <optgroup label="⚔️ COMBATE">
-                                    <option value="Dano">Dano</option>
-                                    <option value="Dano Físico">Dano Físico</option>
-                                    <option value="Dano Mágico">Dano Mágico</option>
-                                    <option value="Dano Crítico">Dano Crítico</option>
-                                    <option value="Taxa de Crítico">Taxa de Crítico</option>
-                                    <option value="Penetração de Armadura">Penetração de Armadura</option>
-                                    <option value="Precisão">Precisão</option>
-                                    <option value="Alcance">Alcance</option>
-                                </optgroup>
-                                <optgroup label="🛡️ DEFESA">
-                                    <option value="Defesa">Defesa</option>
-                                    <option value="Defesa Física">Defesa Física</option>
-                                    <option value="Defesa Mágica">Defesa Mágica</option>
-                                    <option value="Resistência">Resistência</option>
-                                    <option value="Bloqueio">Bloqueio</option>
-                                    <option value="Evasão">Evasão</option>
-                                    <option value="Redução de Dano">Redução de Dano</option>
-                                </optgroup>
-                                <optgroup label="❤️ VITALIDADE">
-                                    <option value="Vida">Vida</option>
-                                    <option value="HP Máximo">HP Máximo</option>
-                                    <option value="Regeneração de Vida">Regeneração de Vida</option>
-                                    <option value="Roubo de Vida">Roubo de Vida</option>
-                                </optgroup>
-                                <optgroup label="🔮 ENERGIA">
-                                    <option value="Mana">Mana</option>
-                                    <option value="Mana Máxima">Mana Máxima</option>
-                                    <option value="Regeneração de Mana">Regeneração de Mana</option>
-                                    <option value="Custo de Habilidade">Custo de Habilidade</option>
-                                </optgroup>
-                                <optgroup label="⚡ VELOCIDADE">
-                                    <option value="Velocidade de Ataque">Velocidade de Ataque</option>
-                                    <option value="Velocidade de Movimento">Velocidade de Movimento</option>
-                                    <option value="Tempo de Recarga">Tempo de Recarga</option>
-                                </optgroup>
-                                <optgroup label="✨ ESPECIAL">
-                                    <option value="Sorte">Sorte</option>
-                                    <option value="Drop de Ouro">Drop de Ouro</option>
-                                    <option value="Experiência">Experiência</option>
-                                    <option value="Durabilidade">Durabilidade</option>
-                                </optgroup>
-                            </select>
-                            <input type="number" placeholder="Valor" class="attr-value">
-                        </div>
-                    </div>
+                    <div id="item2-attributes"></div>
                     <button class="btn-add-attr" onclick="addAttribute('item2')">+ Adicionar Atributo</button>
                 </div>
                 <div class="input-group">
                     <label>Efeitos Especiais (opcional)</label>
-                    <div id="item2-effects">
-                        <div class="attr-input">
-                            <select class="effect-name" style="flex: 2;">
-                                <option value="">Selecione o efeito</option>
-                                <optgroup label="🔥 FOGO">
-                                    <option value="Queima inimigos">Queima inimigos</option>
-                                    <option value="Explosão flamejante">Explosão flamejante</option>
-                                    <option value="Aura de fogo">Aura de fogo</option>
-                                    <option value="Incendeia área">Incendeia área</option>
-                                </optgroup>
-                                <optgroup label="❄️ GELO">
-                                    <option value="Congela inimigos">Congela inimigos</option>
-                                    <option value="Desacelera alvos">Desacelera alvos</option>
-                                    <option value="Tempestade de gelo">Tempestade de gelo</option>
-                                    <option value="Aura gélida">Aura gélida</option>
-                                </optgroup>
-                                <optgroup label="⚡ RAIO">
-                                    <option value="Paralisa inimigos">Paralisa inimigos</option>
-                                    <option value="Corrente elétrica">Corrente elétrica</option>
-                                    <option value="Sobrecarga">Sobrecarga</option>
-                                    <option value="Tempestade">Tempestade</option>
-                                </optgroup>
-                                <optgroup label="☠️ VENENO">
-                                    <option value="Envenena alvos">Envenena alvos</option>
-                                    <option value="Nuvem tóxica">Nuvem tóxica</option>
-                                    <option value="Corrosão">Corrosão</option>
-                                    <option value="Doença">Doença</option>
-                                </optgroup>
-                                <optgroup label="💚 CURA">
-                                    <option value="Regenera vida">Regenera vida</option>
-                                    <option value="Cura ao atacar">Cura ao atacar</option>
-                                    <option value="Aura de cura">Aura de cura</option>
-                                    <option value="Restauração">Restauração</option>
-                                </optgroup>
-                                <optgroup label="🩸 VAMPÍRICO">
-                                    <option value="Drena vida">Drena vida</option>
-                                    <option value="Roubo vampírico">Roubo vampírico</option>
-                                    <option value="Absorção de alma">Absorção de alma</option>
-                                </optgroup>
-                                <optgroup label="✨ LUZ">
-                                    <option value="Dano sagrado">Dano sagrado</option>
-                                    <option value="Cega inimigos">Cega inimigos</option>
-                                    <option value="Aura divina">Aura divina</option>
-                                    <option value="Purificação">Purificação</option>
-                                </optgroup>
-                                <optgroup label="🌑 TREVAS">
-                                    <option value="Dano sombrio">Dano sombrio</option>
-                                    <option value="Amaldiçoa alvos">Amaldiçoa alvos</option>
-                                    <option value="Medo">Medo</option>
-                                    <option value="Corrupção">Corrupção</option>
-                                </optgroup>
-                                <optgroup label="💥 FÍSICO">
-                                    <option value="Atordoa inimigos">Atordoa inimigos</option>
-                                    <option value="Sangramento">Sangramento</option>
-                                    <option value="Perfuração">Perfuração</option>
-                                    <option value="Esmagamento">Esmagamento</option>
-                                </optgroup>
-                                <optgroup label="🛡️ PROTEÇÃO">
-                                    <option value="Escudo mágico">Escudo mágico</option>
-                                    <option value="Reflete dano">Reflete dano</option>
-                                    <option value="Imunidade">Imunidade</option>
-                                    <option value="Barreira">Barreira</option>
-                                </optgroup>
-                                <optgroup label="💨 MOVIMENTO">
-                                    <option value="Aumenta velocidade">Aumenta velocidade</option>
-                                    <option value="Teleporte">Teleporte</option>
-                                    <option value="Dash">Dash</option>
-                                    <option value="Levitação">Levitação</option>
-                                </optgroup>
-                                <optgroup label="🔮 MÁGICO">
-                                    <option value="Regenera mana">Regenera mana</option>
-                                    <option value="Amplifica magia">Amplifica magia</option>
-                                    <option value="Silencia inimigos">Silencia inimigos</option>
-                                    <option value="Explosão arcana">Explosão arcana</option>
-                                </optgroup>
-                                <optgroup label="🎯 UTILITÁRIO">
-                                    <option value="Aumenta drop">Aumenta drop</option>
-                                    <option value="Dobra XP">Dobra XP</option>
-                                    <option value="Invisibilidade">Invisibilidade</option>
-                                    <option value="Visão noturna">Visão noturna</option>
-                                </optgroup>
-                                <optgroup label="🌟 ESPECIAL">
-                                    <option value="Invocação">Invocação</option>
-                                    <option value="Transformação">Transformação</option>
-                                    <option value="Ressurreição">Ressurreição</option>
-                                    <option value="Controle mental">Controle mental</option>
-                                </optgroup>
-                            </select>
-                            <input type="number" placeholder="Nível" class="effect-level" min="1" max="10" value="1">
-                        </div>
-                    </div>
+                    <div id="item2-effects"></div>
                     <button class="btn-add-attr" onclick="addEffect('item2')">+ Adicionar Efeito</button>
                 </div>
             </div>
 
-            <!-- Item 3 (Opcional) -->
+            <!-- ================= ITEM 3 ================= -->
             <div class="item-card">
                 <h2>✨ Item 3 (Opcional)</h2>
                 <div class="input-group">
@@ -713,10 +438,11 @@
                         <option value="colar">Colar</option>
                     </select>
                 </div>
-                <div class="input-group material-search">
-                    <label>Material (digite para buscar)</label>
-                    <input type="text" id="item3-material" placeholder="Digite o material..." autocomplete="off">
-                    <div class="material-suggestions" id="item3-suggestions"></div>
+                <div class="input-group">
+                    <label>Material</label>
+                    <select id="item3-material">
+                        <option value="">Selecione o material</option>
+                    </select>
                 </div>
                 <div class="input-group">
                     <label>Atributos</label>
@@ -730,7 +456,7 @@
                 </div>
             </div>
 
-            <!-- Item 4 (Opcional) -->
+            <!-- ================= ITEM 4 ================= -->
             <div class="item-card">
                 <h2>🌑 Item 4 (Opcional)</h2>
                 <div class="input-group">
@@ -763,10 +489,11 @@
                         <option value="colar">Colar</option>
                     </select>
                 </div>
-                <div class="input-group material-search">
-                    <label>Material (digite para buscar)</label>
-                    <input type="text" id="item4-material" placeholder="Digite o material..." autocomplete="off">
-                    <div class="material-suggestions" id="item4-suggestions"></div>
+                <div class="input-group">
+                    <label>Material</label>
+                    <select id="item4-material">
+                        <option value="">Selecione o material</option>
+                    </select>
                 </div>
                 <div class="input-group">
                     <label>Atributos</label>
@@ -778,643 +505,253 @@
                     <div id="item4-effects"></div>
                     <button class="btn-add-attr" onclick="addEffect('item4')">+ Adicionar Efeito</button>
                 </div>
-            </div>
+            </div> <!-- Fecha o card do Item 4 -->
 
+            <!-- BOTÃO DE FUSÃO (UNICO) -->
             <button class="fusion-button" onclick="fuseItems()">
                 ⚡ FUNDIR ITENS ⚡
             </button>
-        </div>
+        </div> <!-- Fecha main-content -->
 
         <div class="result-container" id="result">
             <div id="result-content"></div>
         </div>
-    </div>
+    </div> <!-- Fecha container -->
 
     <script>
         // Base de dados COMPLETA de materiais
 const MATERIALS_DATABASE = {
-            // METAIS COMUNS
-            'metais_comuns': ['ferro', 'aço', 'bronze', 'cobre', 'latão', 'estanho', 'chumbo', 'zinco', 'níquel'],
-            
-            // METAIS PRECIOSOS
-            'metais_preciosos': ['ouro', 'prata', 'platina', 'paládio', 'ródio', 'irídio', 'osmio', 'rutênio'],
-            
-            // METAIS RAROS/FANTASY/FICÇÃO
-            'metais_fantasy': ['mitril', 'mithril', 'adamantita', 'adamantium', 'vibranium', 'uru', 'unobtainium', 'orichalcum', 'etherium', 'mithral', 'celestial', 'darksteel'],
-            
-            // CRISTAIS E GEMAS
-            'cristais': ['diamante', 'rubi', 'safira', 'esmeralda', 'ametista', 'topázio', 'quartzo', 'jade', 'ônix', 'opala', 'turquesa', 'cristal', 'mana cristalizada', 'cristal do caos', 'kriptonita', 'cristal elemental', 'cristal negro', 'cristal carmesim'],
-            
-            // PEDRAS E MINERAIS
-            'pedras': ['obsidiana', 'obsidiana negra', 'mármore', 'granito', 'ardósia', 'basalto', 'pedra lunar', 'pedra solar', 'pedra das estrelas'],
-            
-            // ELEMENTOS - FOGO
-            'elemento_fogo': ['fogo', 'lava', 'magma', 'plasma condensado', 'cinzas', 'brasa', 'chama', 'inferno', 'plasma'],
-            
-            // ELEMENTOS - ÁGUA
-            'elemento_agua': ['água', 'gelo', 'neve', 'vapor', 'neblina', 'orvalho', 'água marinha', 'água benta'],
-            
-            // ELEMENTOS - TERRA
-            'elemento_terra': ['terra', 'areia', 'barro', 'lama', 'rochas', 'argila', 'pó'],
-            
-            // ELEMENTOS - AR
-            'elemento_ar': ['ar', 'vento', 'tempestade', 'tornado', 'brisa', 'furacão', 'névoa'],
-            
-            // ELEMENTOS - RELÂMPAGO
-            'elemento_raio': ['relâmpago', 'raio', 'trovão', 'eletricidade', 'energia elétrica', 'descarga', 'energon'],
-            
-            // ELEMENTOS - LUZ/TREVAS/VAZIO
-            'luz_trevas': ['luz', 'trevas', 'sombra', 'penumbra', 'escuridão', 'radiância', 'brilho celestial', 'void', 'abismo', 'matéria abissal', 'essência das sombras', 'fragmento do vazio'],
-            
-            // MADEIRAS
-            'madeiras': ['madeira', 'carvalho', 'mogno', 'ébano', 'pinheiro', 'bambu', 'cerejeira', 'salgueiro', 'teixo', 'madeira anciã', 'madeira sagrada'],
-            
-            // ORGÂNICOS
-            'organicos': ['osso', 'osso amaldiçoado', 'carne mutante', 'coração de dragão', 'coração estelar', 'essência de slime', 'couro', 'escamas', 'pele', 'chifre', 'marfim', 'penas', 'quitina', 'coral', 'âmbar'],
-            
-            // MÁGICOS/MÍSTICOS
-            'magicos': ['pedra filosofal', 'mana', 'essência arcana', 'chakra sólido', 'ki cristalizado', 'alma condensada', 'sangue antigo', 'éter', 'arcano', 'divino', 'demoníaco', 'celestial', 'astral', 'espectral', 'etéreo', 'primordial', 'runas', 'sangue de dragão'],
-            
-            // TECNOLÓGICOS/QUÂNTICOS
-            'tecnologicos': ['nanotubos', 'carbono', 'grafeno', 'polímero', 'titânio', 'tungstênio', 'alumínio', 'silício', 'liga metálica', 'nanomaterial', 'liga quântica', 'circuito vivo', 'metal inteligente', 'cristal de dados', 'núcleo sintético', 'núcleo de energia pura'],
-            
-            // NATURAIS ESPECIAIS
-            'naturais_especiais': ['cristal de sal', 'enxofre', 'obsidiana vulcânica', 'âmbar fossilizado', 'pérola negra', 'marfim de mamute'],
-            
-            // EXÓTICOS/CÓSMICOS
-            'exoticos': ['meteoro', 'fragmento estelar', 'poeira cósmica', 'essência lunar', 'núcleo solar', 'fragmento dimensional', 'energia do caos', 'matéria negra', 'tesseract', 'elemento x', 'matéria vermelha', 'anti-matéria', 'núcleo de nether', 'fragmento do end', 'essência do tempo', 'matéria instável']
-        };
+    // METAIS COMUNS
+    'metais_comuns': ['ferro', 'aço', 'bronze', 'cobre', 'latão', 'estanho', 'chumbo', 'zinco', 'níquel'],
+    
+    // METAIS PRECIOSOS
+    'metais_preciosos': ['ouro', 'prata', 'platina', 'paládio', 'ródio', 'irídio', 'osmio', 'rutênio'],
+    
+    // METAIS RAROS/FANTASY/FICÇÃO
+    'metais_fantasy': ['mitril', 'mithril', 'adamantita', 'adamantium', 'vibranium', 'uru', 'unobtainium', 'orichalcum', 'etherium', 'mithral', 'celestial', 'darksteel'],
+    
+    // CRISTAIS E GEMAS
+    'cristais': ['diamante', 'rubi', 'safira', 'esmeralda', 'ametista', 'topázio', 'quartzo', 'jade', 'ônix', 'opala', 'turquesa', 'cristal', 'mana cristalizada', 'cristal do caos', 'kriptonita', 'cristal elemental', 'cristal negro', 'cristal carmesim'],
+    
+    // PEDRAS E MINERAIS
+    'pedras': ['obsidiana', 'obsidiana negra', 'mármore', 'granito', 'ardósia', 'basalto', 'pedra lunar', 'pedra solar', 'pedra das estrelas'],
+    
+    // ELEMENTOS - FOGO
+    'elemento_fogo': ['fogo', 'lava', 'magma', 'plasma condensado', 'cinzas', 'brasa', 'chama', 'inferno', 'plasma'],
+    
+    // ELEMENTOS - ÁGUA
+    'elemento_agua': ['água', 'gelo', 'neve', 'vapor', 'neblina', 'orvalho', 'água marinha', 'água benta'],
+    
+    // ELEMENTOS - TERRA
+    'elemento_terra': ['terra', 'areia', 'barro', 'lama', 'rochas', 'argila', 'pó'],
+    
+    // ELEMENTOS - AR
+    'elemento_ar': ['ar', 'vento', 'tempestade', 'tornado', 'brisa', 'furacão', 'névoa'],
+    
+    // ELEMENTOS - RELÂMPAGO
+    'elemento_raio': ['relâmpago', 'raio', 'trovão', 'eletricidade', 'energia elétrica', 'descarga', 'energon'],
+    
+    // ELEMENTOS - LUZ/TREVAS/VAZIO
+    'luz_trevas': ['luz', 'trevas', 'sombra', 'penumbra', 'escuridão', 'radiância', 'brilho celestial', 'void', 'abismo', 'matéria abissal', 'essência das sombras', 'fragmento do vazio'],
+    
+    // MADEIRAS
+    'madeiras': ['madeira', 'carvalho', 'mogno', 'ébano', 'pinheiro', 'bambu', 'cerejeira', 'salgueiro', 'teixo', 'madeira anciã', 'madeira sagrada'],
+    
+    // ORGÂNICOS
+    'organicos': ['osso', 'osso amaldiçoado', 'carne mutante', 'coração de dragão', 'coração estelar', 'essência de slime', 'couro', 'escamas', 'pele', 'chifre', 'marfim', 'penas', 'quitina', 'coral', 'âmbar'],
+    
+    // MÁGICOS/MÍSTICOS
+    'magicos': ['pedra filosofal', 'mana', 'essência arcana', 'chakra sólido', 'ki cristalizado', 'alma condensada', 'sangue antigo', 'éter', 'arcano', 'divino', 'demoníaco', 'celestial', 'astral', 'espectral', 'etéreo', 'primordial', 'runas', 'sangue de dragão'],
+    
+    // TECNOLÓGICOS/QUÂNTICOS
+    'tecnologicos': ['nanotubos', 'carbono', 'grafeno', 'polímero', 'titânio', 'tungstênio', 'alumínio', 'silício', 'liga metálica', 'nanomaterial', 'liga quântica', 'circuito vivo', 'metal inteligente', 'cristal de dados', 'núcleo sintético', 'núcleo de energia pura'],
+    
+    // NATURAIS ESPECIAIS
+    'naturais_especiais': ['cristal de sal', 'enxofre', 'obsidiana vulcânica', 'âmbar fossilizado', 'pérola negra', 'marfim de mamute'],
+    
+    // EXÓTICOS/CÓSMICOS
+    'exoticos': ['meteoro', 'fragmento estelar', 'poeira cósmica', 'essência lunar', 'núcleo solar', 'fragmento dimensional', 'energia do caos', 'matéria negra', 'tesseract', 'elemento x', 'matéria vermelha', 'anti-matéria', 'núcleo de nether', 'fragmento do end', 'essência do tempo', 'matéria instável']
+};
 
-        // Achata todos os materiais em um array único
-        const ALL_MATERIALS = Object.values(MATERIALS_DATABASE).flat();
+// =========================================================
+// 1. PREPARAÇÃO E LÓGICA DA IA
+// =========================================================
 
-        // IA de Fusão de Itens MELHORADA
-        class ItemFusionAI {
-            constructor() {
-                this.materialsDB = MATERIALS_DATABASE;
-                this.allMaterials = ALL_MATERIALS;
-                this.nomesGerados = new Set(); // Armazena nomes já criados
-            }
+// Achata todos os materiais em um array único para o sistema (se necessário)
+const ALL_MATERIALS = Object.values(MATERIALS_DATABASE).flat();
 
-            canFuse(item1, item2) {
-                // AGORA ACEITA QUALQUER COMBINAÇÃO!
-                // Só precisa que ambos tenham tipo definido
-                return item1.type && item2.type;
-            }
+class ItemFusionAI {
+    constructor() {
+        this.materialsDB = MATERIALS_DATABASE;
+        this.nomesGerados = new Set();
+    }
 
-            getMaterialCategory(material) {
-                const mat = material.toLowerCase();
-                for (const [category, materials] of Object.entries(this.materialsDB)) {
-                    if (materials.includes(mat)) {
-                        return category;
-                    }
-                }
-                return 'custom';
-            }
+    // Calcula a raridade com base no poder total acumulado
+    calculateRarity(totalStats) {
+        if (totalStats < 60) return 'comum';
+        if (totalStats < 160) return 'raro';
+        if (totalStats < 350) return 'epico';
+        if (totalStats < 750) return 'lendario';
+        return 'mitico';
+    }
+}
 
-            generateFusedName(item1, item2) {
-                const tipo = item1.type;
-                const mat1 = item1.material;
-                const mat2 = item2.material;
-                
-                // Detecta se são do mesmo tipo
-                const mesmoTipo = item1.type.toLowerCase() === item2.type.toLowerCase();
-                
-                let nomeBase = '';
-                
-                if (!mesmoTipo) {
-                    nomeBase = `${tipo} Híbrido de ${mat1} e ${mat2}`;
-                } else if (mat1.toLowerCase() === mat2.toLowerCase()) {
-                    // Mesmo material
-                    nomeBase = `${tipo} de ${mat1} Forjado Duplo`;
-                } else {
-                    // Materiais diferentes - cria combinações criativas
-                    const cat1 = this.getMaterialCategory(mat1);
-                    const cat2 = this.getMaterialCategory(mat2);
-                    
-                    // Combinações elementais
-                    if (cat1.includes('elemento') && cat2.includes('elemento')) {
-                        nomeBase = `${tipo} Elemental de ${mat1} e ${mat2}`;
-                    }
-                    // Metal + Elemento
-                    else if ((cat1.includes('metais') && cat2.includes('elemento')) || 
-                        (cat2.includes('metais') && cat1.includes('elemento'))) {
-                        const metal = cat1.includes('metais') ? mat1 : mat2;
-                        const elemento = cat1.includes('elemento') ? mat1 : mat2;
-                        nomeBase = `${tipo} de ${metal} Imbuído de ${elemento}`;
-                    }
-                    // Cristal + qualquer coisa
-                    else if (cat1 === 'cristais' || cat2 === 'cristais') {
-                        const cristal = cat1 === 'cristais' ? mat1 : mat2;
-                        const outro = cat1 === 'cristais' ? mat2 : mat1;
-                        nomeBase = `${tipo} de ${outro} com Núcleo de ${cristal}`;
-                    }
-                    // Combinação padrão
-                    else {
-                        nomeBase = `${tipo} de ${mat1} Revestido em ${mat2}`;
-                    }
-                }
-                
-                // Verifica se o nome já existe
-                let nomeFinal = nomeBase;
-                let contador = 1;
-                
-                while (this.nomesGerados.has(nomeFinal.toLowerCase())) {
-                    // Adiciona sufixo único baseado no contador
-                    const sufixos = [
-                        'Supremo', 'Superior', 'Refinado', 'Aperfeiçoado', 'Melhorado',
-                        'Ancestral', 'Lendário', 'Místico', 'Primordial', 'Transcendente',
-                        'Divino', 'Celestial', 'Eterno', 'Imortal', 'Glorioso',
-                        'Radiante', 'Resplandecente', 'Magnificente', 'Exaltado', 'Sublime'
-                    ];
-                    
-                    if (contador <= sufixos.length) {
-                        nomeFinal = `${nomeBase} ${sufixos[contador - 1]}`;
-                    } else {
-                        // Se acabarem os sufixos, adiciona número romano
-                        nomeFinal = `${nomeBase} ${this.toRoman(contador - sufixos.length)}`;
-                    }
-                    contador++;
-                }
-                
-                // Registra o nome como usado
-                this.nomesGerados.add(nomeFinal.toLowerCase());
-                
-                return nomeFinal;
-            }
+// Cria o objeto fusionAI apenas UMA vez para o código inteiro
+const fusionAI = new ItemFusionAI();
 
-            toRoman(num) {
-                // Converte números para romanos (até 50)
-                const romans = {
-                    50: 'L', 40: 'XL', 10: 'X', 9: 'IX', 
-                    5: 'V', 4: 'IV', 1: 'I'
-                };
-                let result = '';
-                for (let value in romans) {
-                    while (num >= value) {
-                        result += romans[value];
-                        num -= value;
-                    }
-                }
-                return result;
-            }
+// =========================================================
+// 2. FUNÇÕES DE INTERFACE (UI)
+// =========================================================
 
-            fuseAttributes(item1, item2) {
-                const fusedAttrs = {};
-                
-                // Soma atributos comuns
-                [...item1.attributes, ...item2.attributes].forEach(attr => {
-                    if (fusedAttrs[attr.name]) {
-                        fusedAttrs[attr.name] += attr.value;
-                    } else {
-                        fusedAttrs[attr.name] = attr.value;
-                    }
-                });
-                
-                // Bônus por sinergia de materiais
-                const bonus = this.calculateMaterialSynergy(item1.material, item2.material);
-                
-                return Object.entries(fusedAttrs).map(([name, value]) => ({
-                    name,
-                    value: Math.floor(value * bonus)
-                }));
-            }
+// Função para adicionar campos de ATRIBUTOS dinamicamente
+function addAttribute(itemId) {
+    const container = document.getElementById(`${itemId}-attributes`);
+    
+    // Verificação de segurança: se o container não existir, não faz nada
+    if (!container) return;
 
-            fuseEffects(item1, item2) {
-                const fusedEffects = {};
-                
-                // Processa efeitos do item 1
-                item1.customEffects.forEach(eff => {
-                    const key = eff.name.toLowerCase().trim();
-                    if (fusedEffects[key]) {
-                        fusedEffects[key].level += eff.level;
-                        fusedEffects[key].name = eff.name; // Mantém o nome original
-                    } else {
-                        fusedEffects[key] = { name: eff.name, level: eff.level };
-                    }
-                });
-                
-                // Processa efeitos do item 2
-                item2.customEffects.forEach(eff => {
-                    const key = eff.name.toLowerCase().trim();
-                    if (fusedEffects[key]) {
-                        // Efeito igual = soma níveis com bônus
-                        fusedEffects[key].level += eff.level;
-                        fusedEffects[key].name = `${eff.name} Aprimorado`;
-                    } else {
-                        fusedEffects[key] = { name: eff.name, level: eff.level };
-                    }
-                });
-                
-                // Converte para array e formata
-                return Object.values(fusedEffects).map(eff => {
-                    let emoji = '✨';
-                    const nameLower = eff.name.toLowerCase();
-                    
-                    // Escolhe emoji baseado no nome do efeito
-                    if (nameLower.includes('fogo') || nameLower.includes('queima') || nameLower.includes('incendeia')) emoji = '🔥';
-                    else if (nameLower.includes('gelo') || nameLower.includes('congela')) emoji = '❄️';
-                    else if (nameLower.includes('veneno') || nameLower.includes('toxico')) emoji = '☠️';
-                    else if (nameLower.includes('vida') || nameLower.includes('cura') || nameLower.includes('regenera')) emoji = '💚';
-                    else if (nameLower.includes('raio') || nameLower.includes('eletric') || nameLower.includes('paralisa')) emoji = '⚡';
-                    else if (nameLower.includes('vampir') || nameLower.includes('drena')) emoji = '🩸';
-                    else if (nameLower.includes('explos') || nameLower.includes('area')) emoji = '💥';
-                    else if (nameLower.includes('veloz') || nameLower.includes('rapido')) emoji = '💨';
-                    else if (nameLower.includes('escudo') || nameLower.includes('proteg')) emoji = '🛡️';
-                    else if (nameLower.includes('critico')) emoji = '💥';
-                    else if (nameLower.includes('mana') || nameLower.includes('energia')) emoji = '🔮';
-                    
-                    return {
-                        text: `${emoji} ${eff.name} (Nível ${eff.level})`,
-                        level: eff.level
-                    };
-                });
-            }
+    const newAttr = document.createElement('div');
+    newAttr.className = 'attr-input';
+    newAttr.innerHTML = `
+        <select class="attr-name">
+            <option value="">Selecione o atributo</option>
+            <optgroup label="⚔️ COMBATE">
+                <option value="Dano">Dano</option>
+                <option value="Dano Crítico">Dano Crítico</option>
+                <option value="Taxa de Crítico">Taxa de Crítico</option>
+                <option value="Precisão">Precisão</option>
+            </optgroup>
+            <optgroup label="🛡️ DEFESA">
+                <option value="Defesa">Defesa</option>
+                <option value="Resistência">Resistência</option>
+                <option value="Evasão">Evasão</option>
+            </optgroup>
+            <optgroup label="❤️ VITALIDADE">
+                <option value="Vida">Vida</option>
+                <option value="Mana">Mana</option>
+            </optgroup>
+        </select>
+        <input type="number" placeholder="Valor" class="attr-value">
+        <button class="btn-remove-attr" onclick="this.parentElement.remove()">✕</button>
+    `;
+    container.appendChild(newAttr);
+}
+function addEffect(itemId) {
+    const container = document.getElementById(`${itemId}-effects`);
+    const newEffect = document.createElement('div');
+    newEffect.className = 'attr-input';
+    newEffect.innerHTML = `
+        <select class="effect-name" style="flex: 2;">
+            <option value="">Selecione o efeito</option>
+            <optgroup label="🔥 FOGO">
+                <option value="Queima inimigos">Queima inimigos</option>
+                <option value="Explosão flamejante">Explosão flamejante</option>
+                <option value="Aura de fogo">Aura de fogo</option>
+                <option value="Incendeia área">Incendeia área</option>
+            </optgroup>
+            <optgroup label="❄️ GELO">
+                <option value="Congela inimigos">Congela inimigos</option>
+                <option value="Desacelera alvos">Desacelera alvos</option>
+                <option value="Tempestade de gelo">Tempestade de gelo</option>
+                <option value="Aura gélida">Aura gélida</option>
+            </optgroup>
+            <optgroup label="⚡ RAIO">
+                <option value="Paralisa inimigos">Paralisa inimigos</option>
+                <option value="Corrente elétrica">Corrente elétrica</option>
+                <option value="Sobrecarga">Sobrecarga</option>
+            </optgroup>
+            <optgroup label="☠️ VENENO">
+                <option value="Envenena alvos">Envenena alvos</option>
+                <option value="Nuvem tóxica">Nuvem tóxica</option>
+                <option value="Corrosão">Corrosão</option>
+            </optgroup>
+            <optgroup label="💚 CURA/VIDA">
+                <option value="Regenera vida">Regenera vida</option>
+                <option value="Cura ao atacar">Cura ao atacar</option>
+                <option value="Drena vida">Drena vida</option>
+                <option value="Roubo vampírico">Roubo vampírico</option>
+            </optgroup>
+            <optgroup label="✨ LUZ/TREVAS">
+                <option value="Dano sagrado">Dano sagrado</option>
+                <option value="Purificação">Purificação</option>
+                <option value="Dano sombrio">Dano sombrio</option>
+                <option value="Amaldiçoa alvos">Amaldiçoa alvos</option>
+            </optgroup>
+            <optgroup label="🛡️ PROTEÇÃO">
+                <option value="Escudo mágico">Escudo mágico</option>
+                <option value="Reflete dano">Reflete dano</option>
+                <option value="Imunidade">Imunidade</option>
+                <option value="Barreira">Barreira</option>
+            </optgroup>
+            <optgroup label="🔮 MÁGICO">
+                <option value="Regenera mana">Regenera mana</option>
+                <option value="Explosão arcana">Explosão arcana</option>
+                <option value="Silencia inimigos">Silencia inimigos</option>
+            </optgroup>
+        </select>
+        <input type="number" placeholder="Nível" class="effect-level" min="1" max="10" value="1">
+        <button class="btn-remove-attr" onclick="this.parentElement.remove()">✕</button>
+    `;
+    container.appendChild(newEffect);
+}
 
-            calculateMaterialSynergy(mat1, mat2) {
-                const cat1 = this.getMaterialCategory(mat1);
-                const cat2 = this.getMaterialCategory(mat2);
-                
-                // Sinergia perfeita (mesmo material)
-                if (mat1.toLowerCase() === mat2.toLowerCase()) return 1.5;
-                
-                // Sinergias especiais
-                const synergies = {
-                    'elemento_fogo,metais_comuns': 1.3, // Fogo forja metal
-                    'elemento_agua,cristais': 1.3,      // Água purifica cristal
-                    'luz_trevas,magicos': 1.4,          // Luz/Trevas potencializa magia
-                    'elemento_raio,tecnologicos': 1.4,  // Raio + tech = supercharged
-                };
-                
-                const key1 = `${cat1},${cat2}`;
-                const key2 = `${cat2},${cat1}`;
-                
-                return synergies[key1] || synergies[key2] || 1.2; // Bônus padrão
-            }
-
-            calculateRarity(totalStats) {
-                if (totalStats < 20) return 'comum';
-                if (totalStats < 50) return 'incomum';
-                if (totalStats < 100) return 'raro';
-                if (totalStats < 200) return 'epico';
-                if (totalStats < 400) return 'lendario';
-                return 'mitico';
-            }
-
-            generateEffects(fusedItem, mat1, mat2, customEffects) {
-                const effects = [];
-                
-                // PRIMEIRO: Adiciona efeitos customizados dos itens originais
-                customEffects.forEach(eff => {
-                    effects.push(eff.text);
-                });
-                
-                // DEPOIS: Adiciona efeitos automáticos por material (se não conflitar)
-                const cat1 = this.getMaterialCategory(mat1);
-                const cat2 = this.getMaterialCategory(mat2);
-                
-                const materialEffects = {
-                    'elemento_fogo': '🔥 Causa dano de fogo adicional',
-                    'elemento_agua': '💧 Regenera vida lentamente',
-                    'elemento_raio': '⚡ Chance de paralisar inimigos',
-                    'elemento_terra': '🗿 Aumenta resistência',
-                    'elemento_ar': '💨 Aumenta velocidade de ataque',
-                    'luz_trevas': '✨ Drena vida dos inimigos',
-                    'cristais': '💎 Reflete dano mágico',
-                    'metais_preciosos': '👑 Aumenta drop de ouro',
-                    'magicos': '🔮 Regenera mana',
-                };
-                
-                if (materialEffects[cat1]) effects.push(materialEffects[cat1]);
-                if (materialEffects[cat2] && cat1 !== cat2) effects.push(materialEffects[cat2]);
-                
-                // Efeitos baseados em atributos (somente se não houver efeitos customizados relacionados)
-                const hasCustomCritical = customEffects.some(e => e.text.toLowerCase().includes('crítico'));
-                const hasCustomDefense = customEffects.some(e => e.text.toLowerCase().includes('defesa') || e.text.toLowerCase().includes('armadura'));
-                
-                fusedItem.attributes.forEach(attr => {
-                    if (attr.name.toLowerCase().includes('dano') && attr.value > 30 && !hasCustomCritical) {
-                        effects.push(`💥 Golpe Crítico: +${Math.floor(attr.value / 10)}% de chance`);
-                    }
-                    if (attr.name.toLowerCase().includes('defesa') && attr.value > 30 && !hasCustomDefense) {
-                        effects.push(`🛡️ Armadura Pesada: Reduz ${Math.floor(attr.value / 5)}% do dano`);
-                    }
-                });
-                
-                // Efeitos por raridade (somente se não tiver muitos efeitos customizados)
-                if (customEffects.length < 3) {
-                    const totalStats = fusedItem.totalStats;
-                    if (totalStats > 100) effects.push('✨ Aura de Poder (intimida inimigos)');
-                    if (totalStats > 200) effects.push('⚡ Liberação de Energia (dano em área)');
-                    if (totalStats > 300) effects.push('🌟 Ressonância Divina (aumenta XP ganho)');
-                }
-                
-                // Remove duplicatas
-                return [...new Set(effects)];
-            }
-
-            fuse(item1, item2) {
-                if (!this.canFuse(item1, item2)) {
-                    return {
-                        success: false,
-                        message: '❌ Itens incompatíveis! Verifique os dados.'
-                    };
-                }
-
-                const fusedName = this.generateFusedName(item1, item2);
-                const fusedAttributes = this.fuseAttributes(item1, item2);
-                const totalStats = fusedAttributes.reduce((sum, attr) => sum + attr.value, 0);
-                const rarity = this.calculateRarity(totalStats);
-                
-                // Funde os efeitos customizados
-                const customEffects = this.fuseEffects(item1, item2);
-                
-                const fusedItem = {
-                    name: fusedName,
-                    type: item1.type,
-                    materials: [item1.material, item2.material],
-                    attributes: fusedAttributes,
-                    rarity: rarity,
-                    totalStats: totalStats
-                };
-                
-                // Gera efeitos (customizados + automáticos)
-                fusedItem.effects = this.generateEffects(fusedItem, item1.material, item2.material, customEffects);
-
-                return {
-                    success: true,
-                    item: fusedItem
-                };
-            }
+// --- FUNÇÃO: Coleta os dados de cada card ---
+function getItemData(itemId) {
+    const name = document.getElementById(`${itemId}-name`).value;
+    const type = document.getElementById(`${itemId}-type`) ? document.getElementById(`${itemId}-type`).value : "";
+    const material = document.getElementById(`${itemId}-material`).value;
+    
+    const attributes = [];
+    document.querySelectorAll(`#${itemId}-attributes .attr-input`).forEach(elem => {
+        const nElem = elem.querySelector('.attr-name');
+        const vElem = elem.querySelector('.attr-value');
+        if (nElem && vElem) {
+            const n = nElem.value;
+            const v = parseInt(vElem.value) || 0;
+            if (n) attributes.push({ name: n, value: v });
         }
+    });
 
-        // Instância da IA
-        const fusionAI = new ItemFusionAI();
-
-        // Sistema de busca de materiais
-        function setupMaterialSearch(itemId) {
-            const input = document.getElementById(`${itemId}-material`);
-            const suggestionsDiv = document.getElementById(`${itemId}-suggestions`);
-            
-            input.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase();
-                
-                if (query.length < 2) {
-                    suggestionsDiv.classList.remove('show');
-                    return;
-                }
-                
-                const matches = ALL_MATERIALS.filter(m => m.includes(query)).slice(0, 10);
-                
-                if (matches.length === 0) {
-                    suggestionsDiv.innerHTML = '<div class="material-suggestion-item">Nenhum material encontrado. Digite qualquer material!</div>';
-                    suggestionsDiv.classList.add('show');
-                    return;
-                }
-                
-                suggestionsDiv.innerHTML = matches.map(material => {
-                    const category = fusionAI.getMaterialCategory(material);
-                    const categoryName = category.replace(/_/g, ' ').toUpperCase();
-                    return `
-                        <div class="material-suggestion-item" onclick="selectMaterial('${itemId}', '${material}')">
-                            <div><strong>${material}</strong></div>
-                            <div class="material-category">${categoryName}</div>
-                        </div>
-                    `;
-                }).join('');
-                
-                suggestionsDiv.classList.add('show');
-            });
-            
-            input.addEventListener('blur', () => {
-                setTimeout(() => suggestionsDiv.classList.remove('show'), 200);
-            });
+    const customEffects = [];
+    document.querySelectorAll(`#${itemId}-effects .attr-input`).forEach(elem => {
+        const nElem = elem.querySelector('.effect-name');
+        const lElem = elem.querySelector('.effect-level');
+        if (nElem && lElem) {
+            const n = nElem.value;
+            const l = parseInt(lElem.value) || 1;
+            if (n) customEffects.push({ name: n, level: l });
         }
+    });
 
-        function selectMaterial(itemId, material) {
-            document.getElementById(`${itemId}-material`).value = material;
-            document.getElementById(`${itemId}-suggestions`).classList.remove('show');
-        }
+    return { name, type, material, attributes, customEffects };
+}
 
-        function addAttribute(itemId) {
-            const container = document.getElementById(`${itemId}-attributes`);
-            const newAttr = document.createElement('div');
-            newAttr.className = 'attr-input';
-            newAttr.innerHTML = `
-                <select class="attr-name">
-                    <option value="">Selecione o atributo</option>
-                    <optgroup label="⚔️ COMBATE">
-                        <option value="Dano">Dano</option>
-                        <option value="Dano Físico">Dano Físico</option>
-                        <option value="Dano Mágico">Dano Mágico</option>
-                        <option value="Dano Crítico">Dano Crítico</option>
-                        <option value="Taxa de Crítico">Taxa de Crítico</option>
-                        <option value="Penetração de Armadura">Penetração de Armadura</option>
-                        <option value="Precisão">Precisão</option>
-                        <option value="Alcance">Alcance</option>
-                    </optgroup>
-                    <optgroup label="🛡️ DEFESA">
-                        <option value="Defesa">Defesa</option>
-                        <option value="Defesa Física">Defesa Física</option>
-                        <option value="Defesa Mágica">Defesa Mágica</option>
-                        <option value="Resistência">Resistência</option>
-                        <option value="Bloqueio">Bloqueio</option>
-                        <option value="Evasão">Evasão</option>
-                        <option value="Redução de Dano">Redução de Dano</option>
-                    </optgroup>
-                    <optgroup label="❤️ VITALIDADE">
-                        <option value="Vida">Vida</option>
-                        <option value="HP Máximo">HP Máximo</option>
-                        <option value="Regeneração de Vida">Regeneração de Vida</option>
-                        <option value="Roubo de Vida">Roubo de Vida</option>
-                    </optgroup>
-                    <optgroup label="🔮 ENERGIA">
-                        <option value="Mana">Mana</option>
-                        <option value="Mana Máxima">Mana Máxima</option>
-                        <option value="Regeneração de Mana">Regeneração de Mana</option>
-                        <option value="Custo de Habilidade">Custo de Habilidade</option>
-                    </optgroup>
-                    <optgroup label="⚡ VELOCIDADE">
-                        <option value="Velocidade de Ataque">Velocidade de Ataque</option>
-                        <option value="Velocidade de Movimento">Velocidade de Movimento</option>
-                        <option value="Tempo de Recarga">Tempo de Recarga</option>
-                    </optgroup>
-                    <optgroup label="✨ ESPECIAL">
-                        <option value="Sorte">Sorte</option>
-                        <option value="Drop de Ouro">Drop de Ouro</option>
-                        <option value="Experiência">Experiência</option>
-                        <option value="Durabilidade">Durabilidade</option>
-                    </optgroup>
-                </select>
-                <input type="number" placeholder="Valor" class="attr-value">
-                <button class="btn-remove-attr" onclick="this.parentElement.remove()">✕</button>
-            `;
-            container.appendChild(newAttr);
-        }
-
-        function addEffect(itemId) {
-            const container = document.getElementById(`${itemId}-effects`);
-            const newEffect = document.createElement('div');
-            newEffect.className = 'attr-input';
-            newEffect.innerHTML = `
-                <select class="effect-name" style="flex: 2;">
-                    <option value="">Selecione o efeito</option>
-                    <optgroup label="🔥 FOGO">
-                        <option value="Queima inimigos">Queima inimigos</option>
-                        <option value="Explosão flamejante">Explosão flamejante</option>
-                        <option value="Aura de fogo">Aura de fogo</option>
-                        <option value="Incendeia área">Incendeia área</option>
-                    </optgroup>
-                    <optgroup label="❄️ GELO">
-                        <option value="Congela inimigos">Congela inimigos</option>
-                        <option value="Desacelera alvos">Desacelera alvos</option>
-                        <option value="Tempestade de gelo">Tempestade de gelo</option>
-                        <option value="Aura gélida">Aura gélida</option>
-                    </optgroup>
-                    <optgroup label="⚡ RAIO">
-                        <option value="Paralisa inimigos">Paralisa inimigos</option>
-                        <option value="Corrente elétrica">Corrente elétrica</option>
-                        <option value="Sobrecarga">Sobrecarga</option>
-                        <option value="Tempestade">Tempestade</option>
-                    </optgroup>
-                    <optgroup label="☠️ VENENO">
-                        <option value="Envenena alvos">Envenena alvos</option>
-                        <option value="Nuvem tóxica">Nuvem tóxica</option>
-                        <option value="Corrosão">Corrosão</option>
-                        <option value="Doença">Doença</option>
-                    </optgroup>
-                    <optgroup label="💚 CURA">
-                        <option value="Regenera vida">Regenera vida</option>
-                        <option value="Cura ao atacar">Cura ao atacar</option>
-                        <option value="Aura de cura">Aura de cura</option>
-                        <option value="Restauração">Restauração</option>
-                    </optgroup>
-                    <optgroup label="🩸 VAMPÍRICO">
-                        <option value="Drena vida">Drena vida</option>
-                        <option value="Roubo vampírico">Roubo vampírico</option>
-                        <option value="Absorção de alma">Absorção de alma</option>
-                    </optgroup>
-                    <optgroup label="✨ LUZ">
-                        <option value="Dano sagrado">Dano sagrado</option>
-                        <option value="Cega inimigos">Cega inimigos</option>
-                        <option value="Aura divina">Aura divina</option>
-                        <option value="Purificação">Purificação</option>
-                    </optgroup>
-                    <optgroup label="🌑 TREVAS">
-                        <option value="Dano sombrio">Dano sombrio</option>
-                        <option value="Amaldiçoa alvos">Amaldiçoa alvos</option>
-                        <option value="Medo">Medo</option>
-                        <option value="Corrupção">Corrupção</option>
-                    </optgroup>
-                    <optgroup label="💥 FÍSICO">
-                        <option value="Atordoa inimigos">Atordoa inimigos</option>
-                        <option value="Sangramento">Sangramento</option>
-                        <option value="Perfuração">Perfuração</option>
-                        <option value="Esmagamento">Esmagamento</option>
-                    </optgroup>
-                    <optgroup label="🛡️ PROTEÇÃO">
-                        <option value="Escudo mágico">Escudo mágico</option>
-                        <option value="Reflete dano">Reflete dano</option>
-                        <option value="Imunidade">Imunidade</option>
-                        <option value="Barreira">Barreira</option>
-                    </optgroup>
-                    <optgroup label="💨 MOVIMENTO">
-                        <option value="Aumenta velocidade">Aumenta velocidade</option>
-                        <option value="Teleporte">Teleporte</option>
-                        <option value="Dash">Dash</option>
-                        <option value="Levitação">Levitação</option>
-                    </optgroup>
-                    <optgroup label="🔮 MÁGICO">
-                        <option value="Regenera mana">Regenera mana</option>
-                        <option value="Amplifica magia">Amplifica magia</option>
-                        <option value="Silencia inimigos">Silencia inimigos</option>
-                        <option value="Explosão arcana">Explosão arcana</option>
-                    </optgroup>
-                    <optgroup label="🎯 UTILITÁRIO">
-                        <option value="Aumenta drop">Aumenta drop</option>
-                        <option value="Dobra XP">Dobra XP</option>
-                        <option value="Invisibilidade">Invisibilidade</option>
-                        <option value="Visão noturna">Visão noturna</option>
-                    </optgroup>
-                    <optgroup label="🌟 ESPECIAL">
-                        <option value="Invocação">Invocação</option>
-                        <option value="Transformação">Transformação</option>
-                        <option value="Ressurreição">Ressurreição</option>
-                        <option value="Controle mental">Controle mental</option>
-                    </optgroup>
-                </select>
-                <input type="number" placeholder="Nível" class="effect-level" min="1" max="10" value="1">
-                <button class="btn-remove-attr" onclick="this.parentElement.remove()">✕</button>
-            `;
-            container.appendChild(newEffect);
-        }
-
-        function getItemData(itemId) {
-            const name = document.getElementById(`${itemId}-name`).value;
-            const type = document.getElementById(`${itemId}-type`).value;
-            const material = document.getElementById(`${itemId}-material`).value;
-            
-            // Pega atributos
-            const attrElements = document.querySelectorAll(`#${itemId}-attributes .attr-input`);
-            const attributes = [];
-            
-            attrElements.forEach(elem => {
-                const nameElem = elem.querySelector('.attr-name');
-                const name = nameElem.tagName === 'SELECT' ? nameElem.value : nameElem.value;
-                const value = parseInt(elem.querySelector('.attr-value').value) || 0;
-                if (name && value) {
-                    attributes.push({ name, value });
-                }
-            });
-
-            // Pega efeitos customizados
-            const effectElements = document.querySelectorAll(`#${itemId}-effects .attr-input`);
-            const customEffects = [];
-            
-            effectElements.forEach(elem => {
-                const nameElem = elem.querySelector('.effect-name');
-                const name = nameElem.tagName === 'SELECT' ? nameElem.value : nameElem.value;
-                const level = parseInt(elem.querySelector('.effect-level').value) || 1;
-                if (name) {
-                    customEffects.push({ name, level });
-                }
-            });
-
-            return { name, type, material, attributes, customEffects };
-        }
-
+// --- FUNÇÃO PRINCIPAL: Realiza a fusão de 2 a 4 itens ---
 function fuseItems() {
-    // 1. Coleta os dados dos 4 itens e filtra apenas os que foram preenchidos
     const ids = ['item1', 'item2', 'item3', 'item4'];
     const itemsToFuse = ids
         .map(id => getItemData(id))
-        .filter(item => item.name.trim() !== "" && item.material.trim() !== "");
+        .filter(item => item.name.trim() !== "" && item.material !== "");
 
-    // 2. Validação de segurança: Mínimo 2 itens
     if (itemsToFuse.length < 2) {
         alert('⚠️ Para fundir, preencha pelo menos 2 itens (Nome e Material)!');
         return;
     }
 
-    // 3. Inicia a interface de resultado e a animação
     const resultDiv = document.getElementById('result');
     const contentDiv = document.getElementById('result-content');
     resultDiv.classList.add('show');
     contentDiv.innerHTML = `<div class="fusion-animation">⚡ Fundindo ${itemsToFuse.length} Itens... 🔮</div>`;
 
-    // 4. Processamento da Fusão após 1.5 segundos
     setTimeout(() => {
         let fusedAttributes = {};
-        let materials = itemsToFuse.map(i => i.material);
+        let materialsUsed = itemsToFuse.map(i => i.material);
         let allEffects = [];
         
-        // Percorre todos os itens ativos para somar status e coletar efeitos
         itemsToFuse.forEach(item => {
-            // Soma atributos
             item.attributes.forEach(attr => {
                 fusedAttributes[attr.name] = (fusedAttributes[attr.name] || 0) + attr.value;
             });
-            // Coleta efeitos especiais
             item.customEffects.forEach(eff => {
                 allEffects.push(`✨ ${eff.name} (Nível ${eff.level})`);
             });
@@ -1422,27 +759,24 @@ function fuseItems() {
 
         const totalBaseStats = Object.values(fusedAttributes).reduce((a, b) => a + b, 0);
         
-        // 5. Cálculo de Bônus por Quantidade
+        // Bônus: 3 itens = 1.25x | 4 itens = 1.6x (PODER MÁXIMO)
         let multiplier = 1;
-        if (itemsToFuse.length === 3) multiplier = 1.2; // +20%
-        if (itemsToFuse.length === 4) multiplier = 1.5; // +50%
+        if (itemsToFuse.length === 3) multiplier = 1.25;
+        if (itemsToFuse.length === 4) multiplier = 1.6;
 
         const finalPower = Math.floor(totalBaseStats * multiplier);
         const rarity = fusionAI.calculateRarity(finalPower);
         
-        // 6. Gerar nome épico baseado no primeiro item e quantidade
-        const prefixos = ["", "", "Trindade de", "Tetra-Artefato de"];
-        const nomeFinal = (itemsToFuse.length > 2 ? prefixos[itemsToFuse.length - 1] + " " : "Fusão de ") + itemsToFuse[0].name;
+        const prefixos = ["", "", "Trindade de ", "Gênese de "];
+        const nomeFinal = (itemsToFuse.length > 2 ? prefixos[itemsToFuse.length - 1] : "Fusão de ") + itemsToFuse[0].name;
 
-        // Registra o nome na lista de nomes criados
         fusionAI.nomesGerados.add(nomeFinal);
 
-        // 7. Renderiza o HTML final do resultado
         contentDiv.innerHTML = `
             <div class="result-item">
                 <h3>💎 ${nomeFinal}</h3>
                 <div style="text-align: center;"><span class="rarity ${rarity}">${rarity.toUpperCase()}</span></div>
-                <div style="text-align: center; margin: 15px 0;"><strong>Composição:</strong> ${materials.join(' + ')}</div>
+                <div style="text-align: center; margin: 15px 0;"><strong>Composição:</strong> ${materialsUsed.join(' + ')}</div>
                 
                 <div class="result-stats">
                     ${Object.entries(fusedAttributes).map(([name, value]) => `
@@ -1455,29 +789,26 @@ function fuseItems() {
 
                 ${allEffects.length > 0 ? `
                     <div class="effects-list">
-                        <strong>🌟 Efeitos da Fusão:</strong>
+                        <strong>🌟 Poderes Transcendentes:</strong>
                         ${[...new Set(allEffects)].map(e => `<div>${e}</div>`).join('')}
                     </div>
                 ` : ''}
                 
-                <div style="text-align: center; margin-top: 20px; border-top: 2px solid rgba(255,255,255,0.3); padding-top: 15px;">
-                    <strong>💪 Poder Total Final: ${finalPower}</strong>
+                <div style="text-align: center; margin-top: 25px; border-top: 2px solid rgba(255,255,255,0.3); padding-top: 15px;">
+                    <strong style="font-size: 1.5em;">💪 PODER TOTAL FINAL: ${finalPower}</strong>
                 </div>
             </div>
             
             <div style="text-align: center; margin-top: 20px;">
-                <button onclick="location.reload()" style="padding: 15px 30px; background: #667eea; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-right: 10px;">
-                    🔄 Nova Fusão
-                </button>
-                <button onclick="mostrarNomesUsados()" style="padding: 15px 30px; background: #9b59b6; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
-                    📋 Ver Nomes Criados (${fusionAI.nomesGerados.size})
+                <button onclick="location.reload()" style="padding: 15px 40px; background: white; color: #667eea; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer;">
+                    🔄 NOVA FUSÃO
                 </button>
             </div>
         `;
     }, 1500);
 }
 
-// Mostra a lista de itens já fundidos nesta sessão
+// --- FUNÇÃO: Mostra o histórico de itens criados ---
 function mostrarNomesUsados() {
     const nomes = Array.from(fusionAI.nomesGerados);
     if (nomes.length === 0) {
@@ -1488,24 +819,35 @@ function mostrarNomesUsados() {
     alert(`📋 NOMES JÁ CRIADOS:\n\n${lista}`);
 }
 
-// Inicialização (Ativa a busca de materiais nos 4 itens)
-setupMaterialSearch('item1');
-setupMaterialSearch('item2');
-setupMaterialSearch('item3'); 
-setupMaterialSearch('item4'); 
+// --- FUNÇÃO: Preenche os selects de materiais ---
+function popularMenusDeMateriais() {
+    const ids = ['item1-material', 'item2-material', 'item3-material', 'item4-material'];
+    ids.forEach(id => {
+        const select = document.getElementById(id);
+        if (!select) return;
+        select.innerHTML = '<option value="">Selecione o material</option>';
+        for (const [categoria, materiais] of Object.entries(MATERIALS_DATABASE)) {
+            const grupo = document.createElement('optgroup');
+            grupo.label = categoria.replace(/_/g, ' ').toUpperCase();
+            materiais.sort().forEach(mat => {
+                const opt = document.createElement('option');
+                opt.value = mat;
+                opt.textContent = mat.charAt(0).toUpperCase() + mat.slice(1);
+                grupo.appendChild(opt);
+            });
+            select.appendChild(grupo);
+        }
+    });
+}
 
-// Dados de exemplo iniciais para facilitar o teste
-document.getElementById('item1-name').value = 'Espada Flamejante';
-document.getElementById('item1-type').value = 'espada';
-document.getElementById('item1-material').value = 'ferro';
+// --- INICIALIZAÇÃO FINAL ---
+popularMenusDeMateriais();
+['item1', 'item2', 'item3', 'item4'].forEach(id => addAttribute(id));
 
-document.getElementById('item2-name').value = 'Espada Infernal';
-document.getElementById('item2-type').value = 'espada';
-document.getElementById('item2-material').value = 'fogo';
+document.getElementById('item1-name').value = 'Lâmina do Caos';
+document.getElementById('item1-material').value = 'mithril'; 
 
-// Garante que os cards 3 e 4 já tenham um campo de atributo para preencher
-addAttribute('item3');
-addAttribute('item4');
+console.log("Forja RPG: Sistema carregado com sucesso!");
 </script>
 </body>
 </html>
