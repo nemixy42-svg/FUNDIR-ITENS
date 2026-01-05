@@ -316,12 +316,17 @@
                         <option value="espada">Espada</option>
                         <option value="machado">Machado</option>
                         <option value="lança">Lança</option>
+                        <option value="capa">Capa</option>
+                        <option value="peitoral">Peitoral</option>                      
                         <option value="arco">Arco</option>
+                        <option value="brinco">Brinco</option>
                         <option value="cajado">Cajado</option>
                         <option value="varinha">Varinha</option>
+                        <option value="pulseira">Pulseira</option>
+                        <option value="gargantilha">Gargantilha</option>
                         <option value="martelo">Martelo</option>
                         <option value="adaga">Adaga</option>
-                        <option value="armadura">Armadura</option>
+                        <option value="calça">Calça</option>
                         <option value="escudo">Escudo</option>
                         <option value="capacete">Capacete</option>
                         <option value="botas">Botas</option>
@@ -499,12 +504,17 @@
                         <option value="espada">Espada</option>
                         <option value="machado">Machado</option>
                         <option value="lança">Lança</option>
+                        <option value="capa">Capa</option>
+                        <option value="peitoral">Peitoral</option>                      
                         <option value="arco">Arco</option>
+                        <option value="brinco">Brinco</option>
                         <option value="cajado">Cajado</option>
                         <option value="varinha">Varinha</option>
+                        <option value="pulseira">Pulseira</option>
+                        <option value="gargantilha">Gargantilha</option>
                         <option value="martelo">Martelo</option>
                         <option value="adaga">Adaga</option>
-                        <option value="armadura">Armadura</option>
+                        <option value="calça">Calça</option>
                         <option value="escudo">Escudo</option>
                         <option value="capacete">Capacete</option>
                         <option value="botas">Botas</option>
@@ -680,11 +690,25 @@
                 <div class="input-group">
                     <label>Tipo</label>
                     <select id="item3-type">
-                        <option value="capacete">Capacete</option>
                         <option value="espada">Espada</option>
-                        <option value="anel">Anel</option>
-                        <option value="botas">Botas</option>
+                        <option value="machado">Machado</option>
+                        <option value="lança">Lança</option>
+                        <option value="capa">Capa</option>
+                        <option value="peitoral">Peitoral</option>                      
+                        <option value="arco">Arco</option>
+                        <option value="brinco">Brinco</option>
+                        <option value="cajado">Cajado</option>
+                        <option value="varinha">Varinha</option>
+                        <option value="pulseira">Pulseira</option>
+                        <option value="gargantilha">Gargantilha</option>
+                        <option value="martelo">Martelo</option>
+                        <option value="adaga">Adaga</option>
+                        <option value="calça">Calça</option>
                         <option value="escudo">Escudo</option>
+                        <option value="capacete">Capacete</option>
+                        <option value="botas">Botas</option>
+                        <option value="luvas">Luvas</option>
+                        <option value="anel">Anel</option>
                         <option value="amuleto">Amuleto</option>
                         <option value="colar">Colar</option>
                     </select>
@@ -716,12 +740,27 @@
                 <div class="input-group">
                     <label>Tipo</label>
                     <select id="item4-type">
-                        <option value="capa">Capa</option>
                         <option value="espada">Espada</option>
-                        <option value="anel">Anel</option>
-                        <option value="colar">Colar</option>
-                        <option value="luvas">Luvas</option>
+                        <option value="machado">Machado</option>
+                        <option value="lança">Lança</option>
+                        <option value="capa">Capa</option>
+                        <option value="peitoral">Peitoral</option>                      
+                        <option value="arco">Arco</option>
+                        <option value="brinco">Brinco</option>
+                        <option value="cajado">Cajado</option>
+                        <option value="varinha">Varinha</option>
+                        <option value="pulseira">Pulseira</option>
+                        <option value="gargantilha">Gargantilha</option>
+                        <option value="martelo">Martelo</option>
+                        <option value="adaga">Adaga</option>
+                        <option value="calça">Calça</option>
+                        <option value="escudo">Escudo</option>
+                        <option value="capacete">Capacete</option>
                         <option value="botas">Botas</option>
+                        <option value="luvas">Luvas</option>
+                        <option value="anel">Anel</option>
+                        <option value="amuleto">Amuleto</option>
+                        <option value="colar">Colar</option>
                     </select>
                 </div>
                 <div class="input-group material-search">
@@ -753,24 +792,24 @@
 
     <script>
         // Base de dados COMPLETA de materiais
-        const MATERIALS_DATABASE = {
+const MATERIALS_DATABASE = {
             // METAIS COMUNS
             'metais_comuns': ['ferro', 'aço', 'bronze', 'cobre', 'latão', 'estanho', 'chumbo', 'zinco', 'níquel'],
             
             // METAIS PRECIOSOS
             'metais_preciosos': ['ouro', 'prata', 'platina', 'paládio', 'ródio', 'irídio', 'osmio', 'rutênio'],
             
-            // METAIS RAROS/FANTASY
-            'metais_fantasy': ['mitril', 'adamantita', 'orichalcum', 'etherium', 'mithral', 'celestial', 'darksteel', 'vibranium', 'adamantium'],
+            // METAIS RAROS/FANTASY/FICÇÃO
+            'metais_fantasy': ['mitril', 'mithril', 'adamantita', 'adamantium', 'vibranium', 'uru', 'unobtainium', 'orichalcum', 'etherium', 'mithral', 'celestial', 'darksteel'],
             
             // CRISTAIS E GEMAS
-            'cristais': ['diamante', 'rubi', 'safira', 'esmeralda', 'ametista', 'topázio', 'quartzo', 'jade', 'ônix', 'opala', 'turquesa', 'cristal', 'cristal negro', 'cristal carmesim'],
+            'cristais': ['diamante', 'rubi', 'safira', 'esmeralda', 'ametista', 'topázio', 'quartzo', 'jade', 'ônix', 'opala', 'turquesa', 'cristal', 'mana cristalizada', 'cristal do caos', 'kriptonita', 'cristal elemental', 'cristal negro', 'cristal carmesim'],
             
             // PEDRAS E MINERAIS
-            'pedras': ['obsidiana', 'mármore', 'granito', 'ardósia', 'basalto', 'pedra lunar', 'pedra solar', 'pedra das estrelas'],
+            'pedras': ['obsidiana', 'obsidiana negra', 'mármore', 'granito', 'ardósia', 'basalto', 'pedra lunar', 'pedra solar', 'pedra das estrelas'],
             
             // ELEMENTOS - FOGO
-            'elemento_fogo': ['fogo', 'lava', 'magma', 'cinzas', 'brasa', 'chama', 'inferno', 'plasma'],
+            'elemento_fogo': ['fogo', 'lava', 'magma', 'plasma condensado', 'cinzas', 'brasa', 'chama', 'inferno', 'plasma'],
             
             // ELEMENTOS - ÁGUA
             'elemento_agua': ['água', 'gelo', 'neve', 'vapor', 'neblina', 'orvalho', 'água marinha', 'água benta'],
@@ -782,28 +821,28 @@
             'elemento_ar': ['ar', 'vento', 'tempestade', 'tornado', 'brisa', 'furacão', 'névoa'],
             
             // ELEMENTOS - RELÂMPAGO
-            'elemento_raio': ['relâmpago', 'raio', 'trovão', 'eletricidade', 'energia elétrica', 'descarga'],
+            'elemento_raio': ['relâmpago', 'raio', 'trovão', 'eletricidade', 'energia elétrica', 'descarga', 'energon'],
             
-            // ELEMENTOS - LUZ/TREVAS
-            'luz_trevas': ['luz', 'trevas', 'sombra', 'penumbra', 'escuridão', 'radiância', 'brilho celestial', 'void', 'abismo'],
+            // ELEMENTOS - LUZ/TREVAS/VAZIO
+            'luz_trevas': ['luz', 'trevas', 'sombra', 'penumbra', 'escuridão', 'radiância', 'brilho celestial', 'void', 'abismo', 'matéria abissal', 'essência das sombras', 'fragmento do vazio'],
             
             // MADEIRAS
             'madeiras': ['madeira', 'carvalho', 'mogno', 'ébano', 'pinheiro', 'bambu', 'cerejeira', 'salgueiro', 'teixo', 'madeira anciã', 'madeira sagrada'],
             
             // ORGÂNICOS
-            'organicos': ['osso', 'couro', 'escamas', 'pele', 'chifre', 'marfim', 'penas', 'quitina', 'coral', 'âmbar'],
+            'organicos': ['osso', 'osso amaldiçoado', 'carne mutante', 'coração de dragão', 'coração estelar', 'essência de slime', 'couro', 'escamas', 'pele', 'chifre', 'marfim', 'penas', 'quitina', 'coral', 'âmbar'],
             
             // MÁGICOS/MÍSTICOS
-            'magicos': ['mana', 'éter', 'arcano', 'divino', 'demoníaco', 'celestial', 'astral', 'espectral', 'etéreo', 'primordial', 'runas', 'sangue de dragão'],
+            'magicos': ['pedra filosofal', 'mana', 'essência arcana', 'chakra sólido', 'ki cristalizado', 'alma condensada', 'sangue antigo', 'éter', 'arcano', 'divino', 'demoníaco', 'celestial', 'astral', 'espectral', 'etéreo', 'primordial', 'runas', 'sangue de dragão'],
             
-            // TECNOLÓGICOS
-            'tecnologicos': ['nanotubos', 'carbono', 'grafeno', 'polímero', 'titânio', 'tungstênio', 'alumínio', 'silício', 'liga metálica'],
+            // TECNOLÓGICOS/QUÂNTICOS
+            'tecnologicos': ['nanotubos', 'carbono', 'grafeno', 'polímero', 'titânio', 'tungstênio', 'alumínio', 'silício', 'liga metálica', 'nanomaterial', 'liga quântica', 'circuito vivo', 'metal inteligente', 'cristal de dados', 'núcleo sintético', 'núcleo de energia pura'],
             
             // NATURAIS ESPECIAIS
             'naturais_especiais': ['cristal de sal', 'enxofre', 'obsidiana vulcânica', 'âmbar fossilizado', 'pérola negra', 'marfim de mamute'],
             
-            // EXÓTICOS
-            'exoticos': ['meteoro', 'fragmento estelar', 'poeira cósmica', 'essência lunar', 'núcleo solar', 'fragmento dimensional', 'energia do caos', 'matéria negra']
+            // EXÓTICOS/CÓSMICOS
+            'exoticos': ['meteoro', 'fragmento estelar', 'poeira cósmica', 'essência lunar', 'núcleo solar', 'fragmento dimensional', 'energia do caos', 'matéria negra', 'tesseract', 'elemento x', 'matéria vermelha', 'anti-matéria', 'núcleo de nether', 'fragmento do end', 'essência do tempo', 'matéria instável']
         };
 
         // Achata todos os materiais em um array único
